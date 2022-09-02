@@ -21,5 +21,3 @@ jobs:
         run: npm install
       - name: Run unit tests
         run: npm test
-      - name: Daemonize our Node API service
-        run: npm run start &

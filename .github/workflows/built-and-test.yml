@@ -35,7 +35,19 @@ jobs:
 
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        
+      - name: Install Node.js 14.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          cache: npm
+      - name: Install dependencies
+        run: npm install
+      - name: Run unit tests
+        run: npm test
+      - name: Daemonize our Node API service
+        run: npm run start &
 
       - name: docker login
         uses: docker/login-action@v1
@@ -60,7 +72,18 @@ jobs:
     needs: scan
     runs-on: ubuntu-latest
     steps:
-      - name: echo
-        run: echo Hello world
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install Node.js 14.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          cache: npm
+      - name: Install dependencies
+        run: npm install
+      - name: Run unit tests
+        run: npm test
+      - name: Daemonize our Node API service
+        run: npm run start &
 
       

@@ -3,13 +3,13 @@ on:
   workflow_dispatch:
     inputs:
       ACTIVE_API_URL:
-        description: 'The URL of the scanner settings'
-        default: 'https://ec2-44-202-50-212.compute-1.amazonaws.com/active'
+        description: The URL of the scanner settings
+        default: https://ec2-44-202-50-212.compute-1.amazonaws.com/active
         required: false
         type: string
       ACTIVE_SEVERITY_THRESHOLD:
-        description: build disturb on error level supported values [high , medium, low, info, none]
-        default: none
+        description: 'build disturb on error level supported values [high , medium, low, info, none]'
+        default: medium
         required: false
         type: choice
         options:
@@ -27,7 +27,7 @@ on:
         description: Optional base url to override the the source base url for this scan.
         type: string
         required: false
-        default: ''
+        default: 
 
 jobs:
   scan:
@@ -72,18 +72,7 @@ jobs:
     needs: scan
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Install Node.js 14.x
-        uses: actions/setup-node@v3
-        with:
-          node-version: 14
-          cache: npm
-      - name: Install dependencies
-        run: npm install
-      - name: Run unit tests
-        run: npm test
-      - name: Daemonize our Node API service
+      - name: Run Test
         run: npm run start &
 
       

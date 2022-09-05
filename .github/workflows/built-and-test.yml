@@ -4,7 +4,7 @@ on:
     inputs:
       ACTIVE_API_URL:
         description: The URL of the scanner settings
-        default: https://3.88.234.223/active
+        default: https://ec2-3-88-234-223.compute-1.amazonaws.com/active
         required: false
         type: string
       ACTIVE_SEVERITY_THRESHOLD:

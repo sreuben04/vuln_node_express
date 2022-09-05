@@ -27,7 +27,7 @@ on:
         description: Optional base url to override the the source base url for this scan.
         type: string
         required: false
-        default: 
+        default: localhost
 
 jobs:
   scan:
